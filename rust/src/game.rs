@@ -42,5 +42,6 @@ impl Game {
     #[method]
     unsafe fn _process(&self, #[base] _owner: &Spatial, delta: f64) {
         godot_print!("Inside {} _process(), delta is {}", self.name, delta);
+        godot_print!("I'm having so much fun!");
     }
 }

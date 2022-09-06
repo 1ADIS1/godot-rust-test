@@ -9,9 +9,25 @@
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.572229, -0.327396, 0.751909, 0, 0.916856, 0.399217, -0.820094, -0.228443, 0.524651, 4.71648, 2.5, 3.45846 )
+transform = Transform( -0.610009, -0.316337, 0.726512, 0, 0.916856, 0.399217, -0.792394, 0.243526, -0.559291, 5.62652, 3.65402, -5.61616 )
 current = true
+fov = 90.5
 
 [node name="SpinningCube" parent="." instance=ExtResource( 2 )]
 mesh = SubResource( 1 )
 base/rotate_speed = 1.0
+base/offset = Vector3( 1, 0, 0 )
+
+[node name="SpinningCube2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83933, 2.04107, 1.98578 )
+mesh = SubResource( 1 )
+base/start = Vector3( 3, 0, 0 )
+base/rotate_speed = 1.0
+base/offset = Vector3( 0, 2, 0 )
+
+[node name="SpinningCube3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36231, 1.38063, -3.03178 )
+mesh = SubResource( 1 )
+base/start = Vector3( -3, 0, 0 )
+base/rotate_speed = 1.0
+base/offset = Vector3( 0, 0, 3 )

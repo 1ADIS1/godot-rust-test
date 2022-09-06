@@ -6,10 +6,13 @@ use gdnative::prelude::*;
 #[inherit(MeshInstance)]
 #[register_with(Self::register_builder)]
 pub struct SpinningCube {
+    #[property(path = "base/start")]
     start: Vector3,
     time: f32,
     #[property(path = "base/rotate_speed")]
     rotate_speed: f64,
+    #[property(path = "base/offset")]
+    offset: Vector3,
 }
 
 // __One__ `impl` block can have the `#[methods]` attribute, which will generate
@@ -27,6 +30,7 @@ impl SpinningCube {
             start: Vector3::new(0.0, 0.0, 0.0),
             time: 0.0,
             rotate_speed: 0.05,
+            offset: Vector3::new(0.0, 1.0, 0.0),
         }
     }
 
@@ -45,9 +49,10 @@ impl SpinningCube {
 
         self.time += delta as f32;
         owner.rotate_y(self.rotate_speed * delta);
+        owner.rotate_z(self.rotate_speed * delta / 2.0);
 
-        let offset = Vector3::new(0.0, 1.0, 0.0) * self.time.cos() * 0.5;
-        owner.set_translation(self.start + offset);
+        self.offset *= self.time.cos() * 0.5;
+        owner.set_translation(self.start + self.offset);
 
         if let Some(mat) = owner.get_surface_material(0) {
             let mat = mat.assume_safe();
