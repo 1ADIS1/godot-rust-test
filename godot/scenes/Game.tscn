@@ -1,33 +1,47 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://native/Game.gdns" type="Script" id=1]
-[ext_resource path="res://scenes/SpinningCube.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://native/Grid.gdns" type="Script" id=3]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.610009, -0.316337, 0.726512, 0, 0.916856, 0.399217, -0.792394, 0.243526, -0.559291, 5.62652, 3.65402, -5.61616 )
-current = true
-fov = 90.5
+transform = Transform( 0.706506, 0.436313, -0.557208, -0.00108652, 0.78801, 0.615662, 0.707706, -0.434363, 0.557208, -1, 6, 9 )
 
-[node name="SpinningCube" parent="." instance=ExtResource( 2 )]
-mesh = SubResource( 1 )
-base/rotate_speed = 1.0
-base/offset = Vector3( 1, 0, 0 )
+[node name="GridManager" type="Spatial" parent="."]
+script = ExtResource( 3 )
+base/width = 3
+base/height = 3
 
-[node name="SpinningCube2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83933, 2.04107, 1.98578 )
-mesh = SubResource( 1 )
-base/start = Vector3( 3, 0, 0 )
-base/rotate_speed = 1.0
-base/offset = Vector3( 0, 2, 0 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.98199, 2.50957, 5 )
 
-[node name="SpinningCube3" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36231, 1.38063, -3.03178 )
+[node name="Floor" type="MeshInstance" parent="."]
+transform = Transform( 9.84, 0, 0, 0, 3.28, 0, 0, 0, 9.84, 4, 0, 3 )
 mesh = SubResource( 1 )
-base/start = Vector3( -3, 0, 0 )
-base/rotate_speed = 1.0
-base/offset = Vector3( 0, 0, 3 )
+
+[node name="RigidBody" type="RigidBody" parent="Floor"]
+mode = 1
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 2.3, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 2.3, 0, 0, 0, 1, 0, 1, 5 )
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 2.3, 0, 0, 0, 1, 0, 3, 0 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3, 2, 0, 6 )
+polygon = PoolVector2Array( 0, 0, 0, 0, 3, 2, 3, 0 )
