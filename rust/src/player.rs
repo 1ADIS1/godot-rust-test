@@ -8,6 +8,7 @@ pub struct Player {
     speed: f32,
     #[property(default = 20.0)]
     jump_strength: f32,
+    #[property(path = "base/gravity")]
     gravity: f32,
     velocity: Vector3,
     snap_vector: Vector3,

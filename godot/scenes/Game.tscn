@@ -16,11 +16,8 @@ transform = Transform( 0.706506, 0.436313, -0.557208, -0.00108652, 0.78801, 0.61
 
 [node name="GridManager" type="Spatial" parent="."]
 script = ExtResource( 3 )
-base/width = 3
-base/height = 3
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.98199, 2.50957, 5 )
+base/width = 4
+base/height = 4
 
 [node name="Floor" type="MeshInstance" parent="."]
 transform = Transform( 9.84, 0, 0, 0, 3.28, 0, 0, 0, 9.84, 4, 0, 3 )
@@ -45,3 +42,9 @@ transform = Transform( 1, 0, 0, 0, 2.3, 0, 0, 0, 1, 0, 3, 0 )
 [node name="CSGPolygon" type="CSGPolygon" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3, 2, 0, 6 )
 polygon = PoolVector2Array( 0, 0, 0, 0, 3, 2, 3, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1.248, 0, 0, 0, 1, 4, 2, 0 )

@@ -33,10 +33,10 @@ impl CameraJoint {
             let mut degrees = owner.rotation_degrees();
 
             degrees.x -= event.relative().y * self.mouse_sensivity;
-            degrees.x = degrees.x.max(-90.0).min(30.0);
+            // degrees.x = degrees.x.max(0.0).min(360.0);
 
             degrees.y -= event.relative().x * self.mouse_sensivity;
-            degrees.y = degrees.y.max(0.0).min(360.0);
+            // degrees.y = degrees.y.max(0.0).min(360.0);
 
             owner.set_rotation_degrees(degrees);
         }
